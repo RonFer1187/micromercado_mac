@@ -17,10 +17,11 @@ intentos = 3
 
 acceso_concedido = False
 
+
 while intentos > 0:
     usuario = input(f"Ingrese su usuario: Usted tiene : {intentos} intentos: ")
     if usuario_creacion == usuario:
-        print('Usuario correcto: Acceso al sistema >>> verificado>>>>')
+        print(f'Usuario correcto: Acceso al sistema >>> {usuario}verificado>>>>')
         acceso_concedido = True
         break
     else:
@@ -28,9 +29,11 @@ while intentos > 0:
         print(f'Usuario Incorrecto')
 
 
-# Desarrollo del verificador de acceso en caso de intentos errados
+# Desarrollo del verificador de acceso en caso de intentos errados o asierto
 
 if acceso_concedido == True:
-    print ('Bienvenido al sistema de ventas de MICROMERCADO: RONSISTEM')
+    print (f'Bienvenido al sistema de ventas de MICROMERCADO: RONSISTEM {usuario}')
 else:
     print('Su número de intentos terminaron: Bloqueo de sistema RONSISTEM')
+
+
