@@ -1,3 +1,4 @@
+
 #Desarrollo de inputs
 
 # Variables para recordar los datos al cambiar de opción
@@ -6,87 +7,104 @@ usuario_creacion = "ronald.ricaldi"
 password_creacion = "1234"
 acceso_concedido = False
 
-
-print('''   
-      -----------------------------------------
-      Bienvenido al sistema de ventas RONSISTEM
-      -----------------------------------------
-        ''')
-print('¿Qué procedimiento desea realizar?\n')
-
-opcion = int(input('''      
-    1. Crear Nuevo Usuario
-    2. Iniciar Sesión
-    3. Salir del sistema
-    
-    Ingrese su opción: '''))
-
-# OPCIÓN 1: CREAR USUARIO
-
-if opcion == 1:
-    
-    usuario_creacion = input("Cree su usuario (mínimamente 8 caracteres): ").strip()
-    
-    while len(usuario_creacion) < 8:
-        print("Su nombre de usuario debe tener mínimamente 8 caracteres.")
-        usuario_creacion = input('Intente de nuevo: ').strip()
-    else:
-        print("""
-        ------------------------------------------------
-                ¡Usuario creado correctamente! 
-        ------------------------------------------------
-              """)
-        
-        
-        password_creacion = input('Cree su password (debe tener exactamente 4 dígitos): ').strip()
-        
-        while len(password_creacion) != 4:
-            print('Su password debe tener exactamente 4 dígitos.')
-            password_creacion = input('Intente de nuevo: ').strip()
-        else:
-            print('''
-        -------------------------------
-        ¡Password creado correctamente!
-        -------------------------------
+while True:
+    print('''   
+        -----------------------------------------
+        Bienvenido al sistema de ventas RONSISTEM
+        -----------------------------------------
             ''')
-            print("Ahora reinicie el programa y elija la Opción 2 para ingresar.")
+    print('¿Qué procedimiento desea realizar?\n')
 
-# OPCIÓN 2: INICIAR SESIÓN 
+    opcion = int(input('''      
+        1. Crear Nuevo Usuario
+        2. Iniciar Sesión
+        3. Salir del sistema
+        
+        Ingrese su opción: '''))
 
-elif opcion == 2:
-    intentos = 3
-    print(">>>>INICIO DE SESIÓN>>>>>")
+    # OPCIÓN 1: CREAR USUARIO
     
-    while intentos > 0:
-        usuario = input(f"Ingrese su usuario (Tiene {intentos} intentos): ").strip()
-        password = input("Ingrese su contraseña: ").strip()
+    if opcion == 1:
         
-        # Validacion de ambos datos para que coincidan
-        if usuario == usuario_creacion and password == password_creacion:
-            
-            print(f'Usuario correcto: Acceso al sistema >>> {usuario.upper()} VERIFICADO >>>>')
-            acceso_concedido = True
-            break
+        usuario_creacion = input("Cree su usuario (mínimamente 8 caracteres): ").strip()
+        
+        while len(usuario_creacion) < 8:
+            print("Su nombre de usuario debe tener mínimamente 8 caracteres.")
+            usuario_creacion = input('Intente de nuevo: ').strip()
         else:
-            intentos -= 1
-            print(f'Datos incorrectos. Le quedan {intentos} intentos.\n')
-
-    # Desarrollo del verificador de acceso
-    if acceso_concedido == True:
-        print(f'¡Bienvenido al sistema de ventas de MICROMERCADO: RONSISTEM {usuario.upper()}!')
+            print("""
+            ------------------------------------------------
+                    ¡Usuario creado correctamente! 
+            ------------------------------------------------
+                """)
+            
+            
+            password_creacion = input('Cree su password (debe tener exactamente 4 dígitos): ').strip()
+            
+            while len(password_creacion) != 4:
+                print('Su password debe tener exactamente 4 dígitos.')
+                password_creacion = input('Intente de nuevo: ').strip()
+            else:
+                print('''
+            -------------------------------
+            ¡Password creado correctamente!
+            -------------------------------
+                ''')
         
+                    
+    # OPCIÓN 2: INICIAR SESIÓN 
+
+    elif opcion == 2:
+        intentos = 3
+        print(">>>>INICIO DE SESIÓN>>>>>")
+        
+        while intentos > 0:
+            usuario = input(f"Ingrese su usuario (Tiene {intentos} intentos): ").strip()
+            password = input("Ingrese su contraseña: ").strip()
+            
+            # Validacion de ambos datos para que coincidan
+            if usuario == usuario_creacion and password == password_creacion:
+                
+                print(f'Usuario correcto: Acceso al sistema >>> {usuario.upper()} VERIFICADO >>>>')
+                acceso_concedido = True
+                break
+            else:
+                intentos -= 1
+                print(f'Datos incorrectos. Le quedan {intentos} intentos.\n')
+
+        # Desarrollo del verificador de acceso y menu scundario interno
+        if acceso_concedido == True:
+            print(f'Bienvenido al sistema de ventas de MICROMERCADO: RONSISTEM {usuario.upper()}')
+
+            while True:
+                print('''
+                -----------------------------------
+                    PANEL DE CONTROL MICROMERCADO
+                -----------------------------------
+                1. Ver Inventario de Productos
+                2. Cerrar Sesión (Volver al menú principal)
+                ''')
+                opcion_micromercado = int(input('Ingrese su opcion: '))
+
+                if opcion_micromercado ==1:
+                    print('Acá se mostrará el INVENTARIO DE PRODUCTOS')
+
+                elif opcion_micromercado == 2:
+                    print(f'Usted {usuario.upper()} está cerrando sesión...')
+                    acceso_concedido=False
+                    break
+
+        else:
+            print('Su número de intentos terminaron: Bloqueo de sistema RONSISTEM')
+
+        
+        # OPCIÓN 3: SALIR
+    elif opcion == 3:
+            print('Usted salió del sistema de ventas RONSISTEM. ¡Hasta luego!')
+            break
+
     else:
-        print('Su número de intentos terminaron: Bloqueo de sistema RONSISTEM')
-
-
-# OPCIÓN 3: SALIR
-
-elif opcion == 3:
-    print('Usted salió del sistema de ventas RONSISTEM. ¡Hasta luego!')
-
-else:
-    print('Opción inválida. Reinicie el programa y elija 1, 2 o 3.')
-
+            print('Opción inválida. Reinicie el programa y elija 1, 2 o 3.')
 
 
 
