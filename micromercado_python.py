@@ -202,6 +202,34 @@ while True:
                             else:
                                 print('El código que ingresó no existe. Intente de nuevo por favor.')
 
+                        if len(carrito)>0:                 #Este bloque visualiza el ticket de compra realizado             
+                            print('''
+                                    --------------------------------------
+                                        DETALLE DE LA VENTA REALIZADA
+                                    --------------------------------------
+                                    ''')
+                            print(f'{'Detalle Producto':<25} | {'Cantidad':<5} | {'Total':<8}')
+                            print('-' * 45)
+
+                            for item in carrito:
+                                partes = item.split('||')
+                                produc_nombre = partes[0][0:25] #uso del slicing 
+                                produc_cant = partes [1]
+                                product_subtotal = float(partes[2]) #usamos para dos decimales
+
+                                print (f'{produc_nombre:<25} | {produc_cant:<5} | {product_subtotal:<8.2f}') 
+
+                            print ('-' * 45)
+                            print(f'TOTAL A PAGAR< {''<14} Bs {total_venta: .2f}')
+                            print ('-' * 45)
+                            input('Presione ENTER para regresar al menú PANEL DE CONTROL DE VENTAS')
+
+
+              # elif opcion_micromercado == 3:
+                    #Acá trabajaremos la opción de recargar el stock de productos
+
+
+
 
 
         #Codigo realizado para la opcion de Volver al Menú principal
