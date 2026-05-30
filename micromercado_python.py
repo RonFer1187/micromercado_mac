@@ -136,9 +136,9 @@ while True:
 
             while True:
                 print('''
-                -----------------------------------
-                    PANEL DE CONTROL MICROMERCADO
-                -----------------------------------
+                ---------------------------------------
+                PANEL DE CONTROL DE VENTAS MICROMERCADO
+                ---------------------------------------
                 1. Ver Inventario de Productos
                 2. Realizar una Venta
                 3. Aumentar Stock
@@ -157,13 +157,58 @@ while True:
 
                         print(f"{cod:<10} | {nombre_productos:<25} | ${datos[1]:<7.2f} | {datos[2]:<6}")
                     print("="*58)
+        #Codigo realizado para la opcion de Realizar una venta
+                if opcion_micromercado ==2:
+
+                    carrito =[]         # Esta variable se usará para almacenar los productos registrados    
+                    total_venta = 0     # esta variable servirá para acumular el total del dinero para pagar.
+
+                    print ('''
+                    -----------------------------------
+                           Nueva Venta - RONSISTEM
+                    -----------------------------------
+                            ''')
+                    print('Escriba (FINALIZAR VENTA) para terminar la venta')
+
+                    while True:
+                        buscar_codigo = input('Ingrese el Código del Próducto: ').strip().upper()
+
+                        if buscar_codigo == 'FINALIZAR VENTA':
+                            break
+                        if buscar_codigo in inventario:
+                            datos_producto = inventario[buscar_codigo] #Esto sirve para buscar y visualizar la lista del diccionario (inventario) [nombre, precio. stock]
+                            nombre = datos_producto[0]
+                            precio = datos_producto[1]
+                            stock_actual = datos_producto[2]
+
+                        # En esta parte o bloque de codigo se creó para saber si hay disponible el producto en el diccionario INVENTARIO de productos.
+                            if stock_actual > 0:
+                                print(f'Producto: {nombre}, | Precio: Bs {precio: .2f} | Stock: {stock_actual} ')
+                                cantidad = int(input(f'¿Que cantidad registrarás?: '))
+
+                                if cantidad <= 0:
+                                    print('¡La cantidad que debe registrar debe ser mínimo de 1 producto. Intente de nuevo!') #Para que el usuario sí o sí registre una cantidad del producto
+                                elif cantidad <= stock_actual:
+                                    inventario [buscar_codigo][2] -= cantidad #Acá se reduce o resta la cantidad de stock de los productos
+
+                                    subtotal = precio * cantidad
+                                    total_venta += subtotal           #Acá se calcula el subtoral del producto 
+
+                                    #Acá usaremo un nuevo método "append()" para guardar o agregar  en la varible carrito que es una lista y así hacer visible el producto registrado.
+                                    carrito.append (f'{nombre} ||{cantidad} || {subtotal}')
+                                    print(f'Se añadió correctamente el  producto: {nombre}, en una cantidad de: {cantidad}, por un precio de: {subtotal:.2f}')
+                                else:
+                                    print(f' No hay suficiente de este. producto en Stock. Solo quedan {stock_actual} unidades disponibles')
+                            else:
+                                print('El código que ingresó no existe. Intente de nuevo por favor.')
 
 
+
+        #Codigo realizado para la opcion de Volver al Menú principal
                 elif opcion_micromercado == 4:
-                    print(f'Usted {usuario.upper()} está cerrando sesión...')
+                    print(f'Usted {usuario.upper()} volviendo al menú principal...')
                     acceso_concedido=False
                     break
-
         else:
             print('Su número de intentos terminaron: Bloqueo de sistema RONSISTEM')
 
