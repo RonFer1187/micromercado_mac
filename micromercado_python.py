@@ -1,3 +1,61 @@
+#Derrollo del inventario
+
+inventario = {
+    # --- ABARROTES Y BÁSICOS ---
+    'PRODUC01': ['ARROZ : 1KG', 3.50, 25],
+    'PRODUC02': ['FIDEO : 1KG', 2.50, 20],
+    'PRODUC03': ['LECHE : 1L', 9.50, 35],
+    'PRODUC04': ['QUESO : 1KG', 40.50, 15],
+    'PRODUC05': ['ACEITE : 1L', 12.50, 30],
+    'PRODUC06': ['AZÚCAR : 1KG', 4.00, 40],
+    'PRODUC07': ['SAL : 1KG', 1.50, 15],
+    'PRODUC08': ['HARINA : 1KG', 5.00, 25],
+    'PRODUC09': ['CAFÉ : 250G', 18.00, 12],
+    'PRODUC10': ['TÉ : 50 SOBRES', 6.50, 20],
+    
+    # --- LÁCTEOS Y EMBUTIDOS ---
+    'PRODUC11': ['YOGURT : 1L', 11.00, 18],
+    'PRODUC12': ['MANTEQUILLA : 250G', 8.50, 22],
+    'PRODUC13': ['JAMÓN : 250G', 14.00, 10],
+    'PRODUC14': ['SALCHICHA : 500G', 16.50, 15],
+    'PRODUC15': ['CREMA DE LECHE : 300ML', 9.00, 14],
+    
+    # --- BEBIDAS Y JUGOS ---
+    'PRODUC16': ['GASEOSA : 2L', 11.50, 30],
+    'PRODUC17': ['AGUA MINERAL : 2L', 5.00, 25],
+    'PRODUC18': ['JUGO EN CAJA : 1L', 7.50, 20],
+    
+    # --- ENLATADOS Y CONSERVAS ---
+    'PRODUC19': ['ATÚN EN LATA : 170G', 8.50, 35],
+    'PRODUC20': ['SARDINA EN LATA : 425G', 12.00, 18],
+    'PRODUC21': ['EXTRACTO DE TOMATE : 140G', 3.50, 25],
+    'PRODUC22': ['MAÍZ EN LATA : 300G', 6.00, 15],
+    
+    # --- SNACKS Y CONFITERÍA ---
+    'PRODUC23': ['PAPAS FRITAS : 100G', 6.50, 30],
+    'PRODUC24': ['GALLETAS SALADAS : 3 PACKS', 4.00, 28],
+    'PRODUC25': ['GALLETAS DULCES : 150G', 3.50, 35],
+    'PRODUC26': ['CHOCOLATE : 100G', 9.00, 20],
+    'PRODUC27': ['CEREAL : 500G', 22.00, 10],
+    
+    # --- HIGIENE Y ASEO PERSONAL ---
+    'PRODUC28': ['PAPEL HIGIÉNICO : 4 ROLLOS', 7.50, 45],
+    'PRODUC29': ['CHAMPÚ : 400ML', 25.00, 12],
+    'PRODUC30': ['PASTA DENTAL : 90G', 11.00, 18],
+  
+    
+    # --- LIMPIEZA DEL HOGAR ---
+    'PRODUC31': ['DETERGENTE ROPA : 1KG', 15.00, 20],
+    'PRODUC32': ['LAVAVAJILLAS LÍQUIDO : 500ML', 8.50, 22],
+    'PRODUC33': ['ESPONJA DE COCINA : 3 UNID', 3.50, 40],
+    
+    # --- PANADERÍA Y OTROS ---
+    'PRODUC34': ['PAN DE MOLDE : 500G', 10.50, 12],
+    'PRODUC35': ['MERMELADA : 250G', 9.00, 16],
+
+}
+
+
 
 #Desarrollo de inputs
 
@@ -82,14 +140,26 @@ while True:
                     PANEL DE CONTROL MICROMERCADO
                 -----------------------------------
                 1. Ver Inventario de Productos
-                2. Cerrar Sesión (Volver al menú principal)
+                2. Realizar una Venta
+                3. Aumentar Stock
+                4. Volver al menú principal
                 ''')
                 opcion_micromercado = int(input('Ingrese su opcion: '))
 
                 if opcion_micromercado ==1:
-                    print('Acá se mostrará el INVENTARIO DE PRODUCTOS')
+                    print('INVENTARIO DE PRODUCTOS')
+                    print("\n" + "="*58)
+                    print(f"{'Código':<10} | {'Producto':<25} | {'Precio':<8} | {'Stock':<6}")
+                    print("-" * 58)
 
-                elif opcion_micromercado == 2:
+                    for cod, datos in inventario.items():
+                        nombre_productos = datos[0][0:25]
+
+                        print(f"{cod:<10} | {nombre_productos:<25} | ${datos[1]:<7.2f} | {datos[2]:<6}")
+                    print("="*58)
+
+
+                elif opcion_micromercado == 4:
                     print(f'Usted {usuario.upper()} está cerrando sesión...')
                     acceso_concedido=False
                     break
@@ -108,73 +178,6 @@ while True:
 
 
 
-inventario = {
-    # --- ABARROTES Y BÁSICOS ---
-    'PRODUC01': ['ARROZ : 1KG', 3.50, 25],
-    'PRODUC02': ['FIDEO : 1KG', 2.50, 20],
-    'PRODUC03': ['LECHE : 1L', 9.50, 35],
-    'PRODUC04': ['QUESO : 1KG', 40.50, 15],
-    'PRODUC05': ['ACEITE : 1L', 12.50, 30],
-    'PRODUC06': ['AZÚCAR : 1KG', 4.00, 40],
-    'PRODUC07': ['SAL : 1KG', 1.50, 15],
-    'PRODUC08': ['HARINA : 1KG', 5.00, 25],
-    'PRODUC09': ['CAFÉ : 250G', 18.00, 12],
-    'PRODUC10': ['TÉ : 50 SOBRES', 6.50, 20],
-    
-    # --- LÁCTEOS Y EMBUTIDOS ---
-    'PRODUC11': ['YOGURT : 1L', 11.00, 18],
-    'PRODUC12': ['MANTEQUILLA : 250G', 8.50, 22],
-    'PRODUC13': ['JAMÓN : 250G', 14.00, 10],
-    'PRODUC14': ['SALCHICHA : 500G', 16.50, 15],
-    'PRODUC15': ['HUEVOS : 30 UNID', 24.00, 8],
-    'PRODUC16': ['CREMA DE LECHE : 300ML', 9.00, 14],
-    
-    # --- BEBIDAS Y JUGOS ---
-    'PRODUC17': ['GASEOSA : 2L', 11.50, 30],
-    'PRODUC18': ['AGUA MINERAL : 2L', 5.00, 25],
-    'PRODUC19': ['JUGO EN CAJA : 1L', 7.50, 20],
-    'PRODUC20': ['BEBIDA ENERGÉTICA : 350ML', 10.00, 15],
-    'PRODUC21': ['CERVEZA : 620ML', 13.00, 24],
-    
-    # --- ENLATADOS Y CONSERVAS ---
-    'PRODUC22': ['ATÚN EN LATA : 170G', 8.50, 35],
-    'PRODUC23': ['SARDINA EN LATA : 425G', 12.00, 18],
-    'PRODUC24': ['SOPA INSTANTÁNEA : 70G', 4.50, 40],
-    'PRODUC25': ['EXTRACTO DE TOMATE : 140G', 3.50, 25],
-    'PRODUC26': ['MAÍZ EN LATA : 300G', 6.00, 15],
-    'PRODUC27': ['POROTOS EN LATA : 400G', 7.00, 12],
-    
-    # --- SNACKS Y CONFITERÍA ---
-    'PRODUC28': ['PAPAS FRITAS : 100G', 6.50, 30],
-    'PRODUC29': ['GALLETAS SALADAS : 3 PACKS', 4.00, 28],
-    'PRODUC30': ['GALLETAS DULCES : 150G', 3.50, 35],
-    'PRODUC31': ['CHOCOLATE : 100G', 9.00, 20],
-    'PRODUC32': ['CHICLES : CAJA 12U', 5.00, 15],
-    'PRODUC33': ['CEREAL : 500G', 22.00, 10],
-    
-    # --- HIGIENE Y ASEO PERSONAL ---
-    'PRODUC34': ['PAPEL HIGIÉNICO : 4 ROLLOS', 7.50, 45],
-    'PRODUC35': ['CHAMPÚ : 400ML', 25.00, 12],
-    'PRODUC36': ['JABÓN DE TOCADOR : 3 UNID', 10.50, 20],
-    'PRODUC37': ['PASTA DENTAL : 90G', 11.00, 18],
-    'PRODUC38': ['DESODORANTE : 150ML', 22.50, 15],
-    'PRODUC39': ['TOALLAS SANITARIAS : 8U', 8.00, 25],
-    'PRODUC40': ['CEPILLO DE DIENTES : 1U', 6.50, 14],
-    
-    # --- LIMPIEZA DEL HOGAR ---
-    'PRODUC41': ['DETERGENTE ROPA : 1KG', 15.00, 20],
-    'PRODUC42': ['LAVAVAJILLAS LÍQUIDO : 500ML', 8.50, 22],
-    'PRODUC43': ['LIMPIADOR LÍQUIDO : 1L', 7.00, 18],
-    'PRODUC44': ['LAVANDINA / CLORO : 1L', 4.50, 30],
-    'PRODUC45': ['ESPONJA DE COCINA : 3 UNID', 3.50, 40],
-    'PRODUC46': ['BOLSAS DE BASURA : 10 UNID', 6.00, 25],
-    
-    # --- PANADERÍA Y OTROS ---
-    'PRODUC47': ['PAN DE MOLDE : 500G', 10.50, 12],
-    'PRODUC48': ['MERMELADA : 250G', 9.00, 16],
-    'PRODUC49': ['DULCE DE LECHE : 250G', 11.50, 14],
-    'PRODUC50': ['MAYONESA : 200G', 5.50, 25]
-}
 
 
 
